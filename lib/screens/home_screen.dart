@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:navigate_route/screens/detail_screen.dart';
+import 'package:navigate_route/screens/third_screen.dart';
 
 class HomeScreen extends StatelessWidget {
-  static String roteName = '/detail';
+  static const routeName = '/detail';
   const HomeScreen({super.key});
 
   @override
@@ -15,19 +16,32 @@ class HomeScreen extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () async {
-                final result = await Navigator.pushNamed(
+                Navigator.pushNamed(
                   context,
-                  DetailScreen.roteName, // หรือ routeName ถ้าแก้ชื่อแล้ว
+                  DetailScreen.routeName,
                   arguments: {
-                    'itemId': '1234',
-                    'message': 'Hello from HomeScreen',
+                    // ส่ง arguments เป็น Map
+                    'id': 'GOLF007',
+                    'title': 'ข้อมูลจาก Named Route Args',
                   },
                 );
-                print("ได้ค่ากลับมาคือ: $result");
               },
               child: const Text('Go to Detail Screen'),
             ),
-            ElevatedButton(onPressed: () {}, child: Text('Go to Third Screen')),
+            ElevatedButton(
+              onPressed: () async {
+                Navigator.pushNamed(
+                  context,
+                  ThirdScreen.routeName,
+                  arguments: {
+                    // ส่ง arguments เป็น Map
+                    'id': 'GOLF008',
+                    'title': 'ข้อมูลจาก Named Route Args',
+                  },
+                );
+              },
+              child: const Text('Go to Third Screen'),
+            ),
           ],
         ),
       ),
